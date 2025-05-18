@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>puppySense</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+    }
+
+    header {
+      text-align: left;
+      padding: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1f2937;
+      border-bottom: 1px solid #d1d5db;
+      background-color: #ffffff;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background-color: #f9fafb;
+      border-top: 1px solid #d1d5db;
+    }
+
+    main h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+
+    main p {
+      font-size: 1rem;
+      color: #374151;
+      margin: 0.25rem 0;
+    }
+
+    .upload-box {
+      border: 2px dashed #9ca3af;
+      border-radius: 1rem;
+      padding: 3rem 2rem;
+      background: white;
+      margin-top: 2rem;
+      cursor: pointer;
+    }
+
+    .upload-box:hover {
+      background-color: #f3f4f6;
+    }
+
+    .upload-box .button {
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.875rem;
+      color: #6b7280;
+      padding: 1rem;
+      border-bottom: 1px solid #d1d5db;
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <header>Wish4 AI</header>
+
+  <main>
+    <h1>puppySense</h1>
+    <p>아래에 이미지나 동영상을 업로드하면</p>
+    <p>강아지의 표정을 퍼센트로 알려드릴 수 있습니다.</p>
+    <p style="font-size: 0.875rem; color: #6b7280;">동영상은 이미지보다 오랜 시간이 걸릴 수 있습니다.</p>
+
+    <label class="upload-box" for="file-input">
+      <p style="font-size: 1.125rem; font-weight: 500;">Click here to upload</p>
+      <p>an image or video file</p>
+      <span class="button">select file</span>
+      <input type="file" id="file-input" accept="image/*,video/*" style="display: none;" />
+    </label>
+  </main>
+
+  <footer>
+    © 2025 PuppySense™ · A Wish4Pup Team Project
+  </footer>
+
+  <script>
+    const fileInput = document.getElementById('file-input');
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        alert(`파일 이름: ${file.name}\n파일 타입: ${file.type}`);
+        // 여기에서 파일 처리 로직을 추가할 수 있습니다.
+      }
+    });
+  </script>
+</body>
+</html>
