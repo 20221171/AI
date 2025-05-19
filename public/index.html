@@ -71,13 +71,35 @@
       display: inline-block;
     }
 
+    #loading {
+      display: none;
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: #2563eb;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .spinner {
+      margin: 1rem auto;
+      width: 48px;
+      height: 48px;
+      border: 5px solid #93c5fd;
+      border-top: 5px solid #2563eb;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     footer {
       text-align: center;
       font-size: 0.875rem;
       color: #6b7280;
       padding: 1rem;
-      border-bottom: 1px solid #d1d5db;
-      background-color: #ffffff;
     }
   </style>
 </head>
@@ -90,12 +112,17 @@
     <p>강아지의 표정을 퍼센트로 알려드릴 수 있습니다.</p>
     <p style="font-size: 0.875rem; color: #6b7280;">동영상은 이미지보다 오랜 시간이 걸릴 수 있습니다.</p>
 
-    <label class="upload-box" for="file-input">
+    <label class="upload-box" for="file-input" id="upload-box">
       <p style="font-size: 1.125rem; font-weight: 500;">Click here to upload</p>
       <p>an image or video file</p>
       <span class="button">select file</span>
       <input type="file" id="file-input" accept="image/*,video/*" style="display: none;" />
     </label>
+
+    <div id="loading">
+      <div class="spinner"></div>
+      분석 중입니다... 잠시만 기다려 주세요.
+    </div>
   </main>
 
   <footer>
@@ -104,11 +131,20 @@
 
   <script>
     const fileInput = document.getElementById('file-input');
+    const loadingDiv = document.getElementById('loading');
+    const uploadBox = document.getElementById('upload-box');
+
     fileInput.addEventListener('change', (event) => {
       const file = event.target.files[0];
       if (file) {
-        alert(`파일 이름: ${file.name}\n파일 타입: ${file.type}`);
-        // 여기에서 파일 처리 로직을 추가할 수 있습니다.
+        uploadBox.style.display = 'none';
+        loadingDiv.style.display = 'block';
+
+        // 백엔드 처리 로직 대체용 타이머 (예: fetch 등으로 교체 가능)
+        setTimeout(() => {
+          loadingDiv.style.display = 'none';
+          alert('AI 분석 완료!');
+        }, 3000);
       }
     });
   </script>
