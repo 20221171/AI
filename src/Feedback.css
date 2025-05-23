@@ -4,11 +4,6 @@
   flex-direction: column;
   min-height: 100vh;
   justify-content: space-between;
-  /*background: url('/path/to/your/background-image.jpg') no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);*/
 }
 
 header {
@@ -46,6 +41,11 @@ main p {
   margin: 0.25rem 0;
 }
 
+.info-small {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
 .card {
   background: rgba(255, 255, 255, 0.85);
   border-radius: 1.25rem;
@@ -56,6 +56,15 @@ main p {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   color: #111827;
   text-align: left;
+}
+
+.percent-input {
+  width: 60px;
+  padding: 0.25rem;
+  margin-left: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  text-align: right;
 }
 
 .feedback-image {
@@ -70,15 +79,12 @@ main p {
   line-height: 1.6;
 }
 
-.edit-button {
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-  display: inline-block;
+.edit-button:active,
+.complete-button:active {
+  transform: scale(0.96);
 }
 
+.edit-button,
 .complete-button {
   background-color: #3b82f6;
   color: white;
@@ -88,8 +94,10 @@ main p {
   display: inline-block;
 }
 
+
+
 footer {
-  text-align: center;
+  text-align: left;
   font-size: 0.875rem;
   color: #6b7280;
   padding: 1rem;
