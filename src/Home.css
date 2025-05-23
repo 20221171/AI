@@ -1,0 +1,114 @@
+/* Home.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f4f6;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
+header {
+  text-align: left;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  border-bottom: 1px solid #d1d5db;
+  background-color: #ffffff;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9fafb;
+  border-top: 1px solid #d1d5db;
+}
+
+main h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+main p {
+  font-size: 1rem;
+  color: #374151;
+  margin: 0.25rem 0;
+}
+
+.info-small {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.upload-box {
+  border: 2px dashed #9ca3af;
+  border-radius: 1rem;
+  padding: 3rem 2rem;
+  background: white;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.upload-box:hover {
+  background-color: #f3f4f6;
+}
+
+.upload-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+#loading {
+  display: block;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #2563eb;
+  text-align: center;
+  font-weight: bold;
+}
+
+.spinner {
+  margin: 1rem auto;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #93c5fd;
+  border-top: 5px solid #2563eb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  padding: 1rem;
+}
