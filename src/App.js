@@ -1,12 +1,18 @@
 import React from 'react';
-//import Home from './Home'; 
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home';
 import Feedback from './Feedback';
-// function App() {
-//   return <Home />;
-// }
+import './App.css';
+
 function App() {
-  return <Feedback />;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/feedback" element={<Feedback />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
