@@ -42,7 +42,32 @@ main p.note {
   font-size: 0.875rem;
   color: #6b7280;
 }
-
+.video-tuning-img {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.video-tuning-img > div {
+  justify-self: center;
+}
+.puppy-tuning-img-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.puppy-tuning-img-p{
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  color: white;
+}
+.puppy-tuning-img-time-wrap{
+  display: flex;
+  justify-content: space-around;
+}
 .upload-box {
   border: 2px dashed #9ca3af;
   border-radius: 1rem;
@@ -72,15 +97,19 @@ main p.note {
 }
 
 #analyze {
-  display: none;
   font-size: 1rem;
   color: #374151;
-  margin: 0.25rem 0;
-  align-items: center;
-  justify-content: center;
+  margin: 1rem 0;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
   background-color: #f9fafb;
+}
+
+#analyze .message {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2563eb;
+  margin-bottom: 1rem;
 }
 
 #analyze .div{
