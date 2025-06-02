@@ -382,7 +382,7 @@ const { isProcessing, detectedFrames, error: frameError } = useDogFaceDetection(
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <header className="text-left p-4 text-2xl font-bold text-gray-800 border-b border-gray-300 bg-white">
-        Wish4 AI
+        Wish4 <img src="/puppy.png" alt="Puppy Logo" className="header-image" /> AI
       </header>
 
       <main className="flex-grow flex flex-col items-center justify-center text-center p-8 bg-gray-50 border-t border-gray-300">
@@ -495,103 +495,110 @@ const { isProcessing, detectedFrames, error: frameError } = useDogFaceDetection(
           </label>
         )}
 
-        {(!isProcessing && !localIsProcessing && detectedFrames.length > 0) && (
-          <div className="mt-4 w-full max-w-4xl">
-            <h3 className="text-lg font-semibold mb-2">
-              감지된 강아지 얼굴: {detectedFrames.length}개
-              {detectedFrames.length > 0 && ` (${Math.round(detectedFrames[0].timestamp)}초 ~ ${Math.round(detectedFrames[detectedFrames.length-1].timestamp)}초)`}
-            </h3>
-            <div className="video-tuning-img">
-              {detectedFrames.map((frame, index) => (
-                <div 
-                  key={index} 
-                  className={`border rounded-lg p-2 bg-white shadow-sm transition-all cursor-pointer
-                    ${selectedImage === index 
-                      ? 'ring-2 ring-blue-500 shadow-lg brightness-75' 
-                      : 'hover:shadow-md hover:brightness-90'}`}
-                  onClick={() => handleImageSelect(index)}
-                >
-                  <div className="relative puppy-tuning-img-wrap">
-                    <p className="puppy-tuning-img-p text-sm font-medium text-gray-900">
-                      {index + 1}
-                    </p>
-                    <div className="relative">
-                      <img
-                        src={URL.createObjectURL(frame.frameBlob)}
-                        alt={`강아지 얼굴 프레임 ${index + 1}`}
-                        style={{
-                          width: '70px',
-                          height: '70px',
-                          display: 'inline-block',
-                          objectFit: 'cover'
-                        }}
-                        className="rounded"
-                        onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
-                      />
-                      <div 
-                        className="absolute border-2 border-blue-500"
-                        style={{
-                          left: `${(frame.faceBox.topLeft[0] / frame.frameBlob.size) * 100}%`,
-                          top: `${(frame.faceBox.topLeft[1] / frame.frameBlob.size) * 100}%`,
-                          width: `${((frame.faceBox.bottomRight[0] - frame.faceBox.topLeft[0]) / frame.frameBlob.size) * 100}%`,
-                          height: `${((frame.faceBox.bottomRight[1] - frame.faceBox.topLeft[1]) / frame.frameBlob.size) * 100}%`
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-2 text-center puppy-tuning-img-time-wrap">
-                    <div className="bg-black bg-opacity-50 text-white px-1 py-0.5 text-xs rounded mb-1">
-                      {Math.round(frame.confidence * 100)}%
-                    </div>
-                    <div className="text-sm text-gray-600 flex items-center justify-center space-x-1">
-                      {selectedImage === index && (
-                        <svg 
-                          className="w-4 h-4 text-green-500" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            strokeWidth={2} 
-                            d="M5 13l4 4L19 7" 
-                          />
-                        </svg>
-                      )}
-                      <span>{Math.round(frame.timestamp)}초</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 flex flex-col items-center space-y-2">
-              <div className="message text-lg font-medium text-gray-700">
-                분석할 1개의 이미지를 선택해주세요
-              </div>
-              <div className="flex space-x-4">
-                <button
-                  className={`px-6 py-2 rounded-lg transition-all
-                    ${selectedImage !== null 
-                      ? 'bg-blue-500 hover:bg-blue-600 text-white' 
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
-                  onClick={handleImageUpload}
-                  disabled={selectedImage === null}
-                >
-                  선택한 이미지 업로드
-                </button>
-                <button
-                  className="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
-                  onClick={() => {
-                    window.location.reload();
-                  }}
-                >
-                  다시 시도
-                </button>
-              </div>
+{(!isProcessing && !localIsProcessing && detectedFrames.length > 0) && (
+  <div className="mt-4 w-full max-w-4xl">
+    <h3 className="text-lg font-semibold mb-2">
+      감지된 강아지 얼굴: {detectedFrames.length}개
+      {detectedFrames.length > 0 &&
+        ` (${Math.round(detectedFrames[0].timestamp)}초 ~ ${Math.round(
+          detectedFrames[detectedFrames.length - 1].timestamp
+        )}초)`}
+    </h3>
+    <div className="video-tuning-img">
+      {detectedFrames.map((frame, index) => (
+        <div
+          key={index}
+          className="border rounded-lg p-2 bg-white shadow-sm transition-all cursor-pointer hover:shadow-md hover:brightness-90"
+          onClick={() => handleImageSelect(index)}
+        >
+          <div className="relative puppy-tuning-img-wrap">
+            <p className="puppy-tuning-img-p text-sm font-medium text-gray-900">
+              {index + 1}
+            </p>
+            <div className="relative">
+              <img
+                src={URL.createObjectURL(frame.frameBlob)}
+                alt={`강아지 얼굴 프레임 ${index + 1}`}
+                style={{
+                  width: '70px',
+                  height: '70px',
+                  display: 'inline-block',
+                  objectFit: 'cover',
+                }}
+                className={`rounded ${selectedImage === index ? 'selected-image' : ''}`}
+                onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
+              />
+              <div
+                className="absolute border-2 border-blue-500"
+                style={{
+                  left: `${(frame.faceBox.topLeft[0] / frame.frameBlob.size) * 100}%`,
+                  top: `${(frame.faceBox.topLeft[1] / frame.frameBlob.size) * 100}%`,
+                  width: `${((frame.faceBox.bottomRight[0] - frame.faceBox.topLeft[0]) / frame.frameBlob.size) * 100}%`,
+                  height: `${((frame.faceBox.bottomRight[1] - frame.faceBox.topLeft[1]) / frame.frameBlob.size) * 100}%`,
+                }}
+              />
             </div>
           </div>
-        )}
+          <div className="puppy-tuning-img-time-wrap">
+            {selectedImage === index && (
+              <svg
+                className="check-icon"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            )}
+            <div className="frame-info">
+              <span className="confidence">{Math.round(frame.confidence * 100)}%</span>
+              <span className="timestamp">{Math.round(frame.timestamp)}초</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="action-buttons">
+      <div className="message">분석할 1개의 이미지를 선택해주세요</div>
+      <div className="button-group">
+        <button
+          className={`upload-button ${selectedImage !== null ? '' : 'disabled'}`}
+          onClick={handleImageUpload}
+          disabled={selectedImage === null}
+        >
+          선택한 이미지 업로드
+        </button>
+        <button
+          className="retry-button"
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+         <svg
+            className="retry-icon"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
       </main>
       <footer className="text-center text-sm text-gray-500 py-4">
         © 2025 PuppySense™ · A Wish4Pup Team Project

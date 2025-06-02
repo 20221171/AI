@@ -520,3 +520,114 @@ footer {
   color: #6b7280;
   padding: 3px;
 }/*# sourceMappingURL=styles.css.map */
+
+/* Home.css */
+
+/* 체크 아이콘 및 텍스트 정렬 */
+.puppy-tuning-img-time-wrap {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.check-icon {
+  width: 20px; /* 사용자가 수정한 크기 유지 */
+  height: 30px;
+  color: #24bb3d; /* 사용자가 수정한 색상 유지 */
+}
+
+.frame-info {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Tailwind의 space-x-2 */
+  font-size: 14px; /* Tailwind의 text-sm */
+  color: #4b5563; /* Tailwind의 text-gray-600 */
+}
+
+.confidence {
+  background-color: rgba(0, 0, 0, 0.5); /* Tailwind의 bg-black bg-opacity-50 */
+  color: white;
+  padding: 2px 4px;
+  font-size: 12px; /* Tailwind의 text-xs */
+  border-radius: 4px;
+}
+
+.timestamp {
+  /* 기본 텍스트 스타일 */
+}
+
+/* 버튼 그룹 */
+.action-buttons {
+  margin-top: 24px; /* Tailwind의 mt-6 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; /* Tailwind의 space-y-2 */
+}
+
+.message {
+  font-size: 18px; /* Tailwind의 text-lg */
+  font-weight: 500; /* Tailwind의 font-medium */
+  color: #374151; /* Tailwind의 text-gray-700 */
+}
+
+.button-group {
+  display: flex;
+  gap: 16px; /* Tailwind의 space-x-4 */
+}
+
+.upload-button, .retry-button {
+  padding: 6px 16px; /* Tailwind의 px-4 py-1.5 */
+  font-size: 14px; /* Tailwind의 text-sm */
+  font-weight: 500; /* Tailwind의 font-medium */
+  background-color: #3b82f6; /* Tailwind의 bg-blue-500 */
+  color: white; /* Tailwind의 text-white */
+  border-radius: 20px; /* 타원형 (완전 원형 대신 부드러운 타원) */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Tailwind의 shadow-sm */
+  transition: all 0.2s ease-in-out; /* 부드러운 애니메이션 */
+  border: none; /* 테두리 제거 */
+}
+
+.upload-button:hover:not(.disabled), .retry-button:hover {
+  background-color: #2563eb; /* Tailwind의 hover:bg-blue-600 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tailwind의 hover:shadow-md */
+  transform: scale(1.05); /* Tailwind의 hover:scale-105 */
+  border: none; /* 테두리 제거 */
+}
+
+.upload-button.disabled {
+  background-color: #e5e7eb; /* Tailwind의 bg-gray-200 */
+  color: #6b7280; /* Tailwind의 text-gray-500 */
+  cursor: not-allowed;
+}
+
+/* 선택된 이미지 강조 */
+.selected-image {
+  border: 3px solid #1d4ed8; /* Tailwind의 border-blue-700, 선명한 파란색 테두리 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 이미지에 적합한 부드러운 그림자 */
+  background-color: #eff6ff; /* Tailwind의 bg-blue-50, 연한 파란색 배경 */
+  filter: brightness(0.85); /* 약간 어두운 효과 */
+  transition: all 0.2s ease-in-out;
+}
+
+/* 헤더 이미지 스타일 */
+.header-image {
+  height: 40px; /* 더 작게 조정 (24px → 16px) */
+  width: auto; /* 비율 유지 */
+  display: inline-block;
+  vertical-align: middle; /* 텍스트와 수평 정렬 */
+  margin: 0 4px; /* 텍스트와 간격 */
+}
+
+.retry-button {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* 아이콘과 텍스트 간격 */
+}
+
+.retry-icon {
+  width: 12px; /* 작은 크기 */
+  height: 12px;
+}

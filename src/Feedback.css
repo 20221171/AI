@@ -102,3 +102,12 @@ footer {
   color: #6b7280;
   padding: 1rem;
 }
+
+/* 헤더 이미지 스타일 */
+.header-image {
+  height: 40px; /* 더 작게 조정 (24px → 16px) */
+  width: auto; /* 비율 유지 */
+  display: inline-block;
+  vertical-align: middle; /* 텍스트와 수평 정렬 */
+  margin: 0 4px; /* 텍스트와 간격 */
+}

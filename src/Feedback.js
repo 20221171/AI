@@ -60,7 +60,9 @@ const Feedback = () => {
 
   return (
     <div className="feedback-container">
-      <header>Wish4 AI</header>
+      <header className="text-left p-4 text-2xl font-bold text-gray-800 border-b border-gray-300 bg-white">
+        Wish4<img src="/puppy.png" alt="Puppy Logo" className="header-image" />AI
+      </header>
 
       <main>
         <h1>puppySense</h1>
