@@ -342,37 +342,28 @@ const { isProcessing, detectedFrames, error: frameError } = useDogFaceDetection(
       return;
     }
 
-    // TODO: API 엔드포인트로 변경 필요
-    const API_ENDPOINT = '/api/upload';
+    // 실제 백엔드 API 엔드포인트로 변경
+    const API_ENDPOINT = 'http://34.22.94.152:5000/predict';
 
     try {
       const formData = new FormData();
-      formData.append('image', selectedFrame.frameBlob);
+      formData.append('image', selectedFrame.frameBlob, 'frame.jpg');
       formData.append('confidence', selectedFrame.confidence.toString());
       formData.append('timestamp', selectedFrame.timestamp.toString());
-      
-      // TODO: 실제 API 호출로 변경 필요
-      console.log('이미지 업로드 준비 완료:', {
-        confidence: selectedFrame.confidence,
-        timestamp: selectedFrame.timestamp
-      });
 
-      // 실제 API 호출 코드 (현재는 주석 처리)
-      /*
+      // 실제 API 호출
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         body: formData
       });
 
       if (!response.ok) {
-        throw new Error('업로드 실패');
+        throw new Error('업로드 실패: ' + response.statusText);
       }
 
       const data = await response.json();
       console.log('업로드 성공:', data);
-      */
-
-      alert('이미지가 성공적으로 준비되었습니다!\n(서버 연동 시 실제 업로드가 진행됩니다)');
+      alert('이미지가 성공적으로 업로드되었습니다! 결과: ' + JSON.stringify(data));
     } catch (error) {
       console.error('Upload error:', error);
       alert('업로드 중 오류가 발생했습니다.');
