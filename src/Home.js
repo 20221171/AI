@@ -329,52 +329,50 @@ const { isProcessing, detectedFrames, error: frameError } = useDogFaceDetection(
     setSelectedImage(index);
   }, []);
 
-  // 선택된 이미지 업로드 핸들러
-  const handleImageUpload = useCallback(async () => {
-    if (selectedImage === null) {
-      alert('이미지를 선택해주세요!');
-      return;
+// 선택된 이미지 업로드 핸들러
+const handleImageUpload = useCallback(async () => {
+  if (selectedImage === null) {
+    alert('이미지를 선택해주세요!');
+    return;
+  }
+
+  const selectedFrame = detectedFrames[selectedImage];
+  if (!selectedFrame) {
+    alert('선택된 이미지를 찾을 수 없습니다.');
+    return;
+  }
+
+  const API_ENDPOINT = 'http://34.22.94.152:5000/predict';
+
+  try {
+    const formData = new FormData();
+    formData.append('image', selectedFrame.frameBlob); // key: 'image'로 이미지 파일 전송
+
+    const response = await fetch(API_ENDPOINT, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error('업로드 실패');
     }
 
-    const selectedFrame = detectedFrames[selectedImage];
-    if (!selectedFrame) {
-      alert('선택된 이미지를 찾을 수 없습니다.');
-      return;
-    }
+    const data = await response.json();
+    console.log('업로드 성공:', data);
 
-    // 실제 백엔드 API 엔드포인트로 변경
-    const API_ENDPOINT = 'http://34.22.94.152:5000/predict';
-
-    try {
-      const formData = new FormData();
-      formData.append('image', selectedFrame.frameBlob); // 파일 이름 인자 제거
-      formData.append('confidence', selectedFrame.confidence.toString());
-      formData.append('timestamp', selectedFrame.timestamp.toString());
-
-      // 실제 API 호출
-      const response = await fetch(API_ENDPOINT, {
-        method: 'POST',
-        body: formData
-      });
-
-      if (!response.ok) {
-        throw new Error('업로드 실패: ' + response.statusText);
-      }
-
-      let data;
-      try {
-        data = await response.json();
-      } catch (jsonErr) {
-        // JSON 파싱 실패 시 텍스트로 대체
-        data = await response.text();
-      }
-      console.log('업로드 성공:', data);
-      alert('이미지가 성공적으로 업로드되었습니다! 결과: ' + JSON.stringify(data));
-    } catch (error) {
-      console.error('Upload error:', error);
-      alert('업로드 중 오류가 발생했습니다.');
-    }
-  }, [selectedImage, detectedFrames]);
+    // Feedback.js로 데이터 전달하며 페이지 이동
+    navigate('/feedback', {
+      state: {
+        imageFile: selectedFrame.frameBlob,
+        emotions: data.emotions, // 감정 데이터 전달
+        prediction: data.prediction, // 예측 결과 전달
+      },
+    });
+  } catch (error) {
+    console.error('Upload error:', error);
+    alert('업로드 중 오류가 발생했습니다.');
+  }
+}, [selectedImage, detectedFrames, navigate]);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
