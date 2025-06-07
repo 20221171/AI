@@ -347,7 +347,7 @@ const { isProcessing, detectedFrames, error: frameError } = useDogFaceDetection(
 
     try {
       const formData = new FormData();
-      formData.append('image', selectedFrame.frameBlob, 'frame.jpg');
+      formData.append('image', selectedFrame.frameBlob); // 파일 이름 인자 제거
       formData.append('confidence', selectedFrame.confidence.toString());
       formData.append('timestamp', selectedFrame.timestamp.toString());
 
@@ -361,7 +361,13 @@ const { isProcessing, detectedFrames, error: frameError } = useDogFaceDetection(
         throw new Error('업로드 실패: ' + response.statusText);
       }
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonErr) {
+        // JSON 파싱 실패 시 텍스트로 대체
+        data = await response.text();
+      }
       console.log('업로드 성공:', data);
       alert('이미지가 성공적으로 업로드되었습니다! 결과: ' + JSON.stringify(data));
     } catch (error) {
