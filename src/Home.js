@@ -342,7 +342,7 @@ const handleImageUpload = useCallback(async () => {
     return;
   }
 
-  const API_ENDPOINT = 'http://34.22.94.152:5000/predict';
+  const API_ENDPOINT = 'https://34.22.94.152.nip.io/predict';
 
   try {
     const formData = new FormData();
